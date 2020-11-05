@@ -14,7 +14,7 @@ class player(peon,tablero):
         self.nombre = nombre
         self.vida = vida
         self.items = items
-    
+
     
     def mover(self,dir):
         
@@ -50,7 +50,7 @@ class player(peon,tablero):
                     print(tablero1.mapa)
                     break
 
-                    
+                
         
 
     def atacar(self):
