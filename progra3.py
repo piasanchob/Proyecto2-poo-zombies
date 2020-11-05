@@ -15,7 +15,7 @@ class player(peon,tablero):
         self.vida = vida
         self.items = items
 
-    
+"""ffffffffffffffffffffffffffffffffffffffffffffff"""    
     def mover(self,dir):
         
         
