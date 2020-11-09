@@ -71,7 +71,6 @@ class player(peon,tablero):
                         else:
                             print("invalido")
 
-<<<<<<< HEAD
         if dir == 4:
             m = True
             while m == True:
@@ -167,8 +166,6 @@ class player(peon,tablero):
                         if x == player1.nombre:
                             c = tablero1.mapa.index(lista)
                             #print(c)
-                            if c == 0:
-                                print("invalido")
                             
                             
                             if tablero1.mapa[c] == lista:
@@ -194,8 +191,6 @@ class player(peon,tablero):
                         if x == player2.nombre:
                             c = tablero1.mapa.index(lista)
                             #print(c)
-                            if c == 0:
-                                print("invalido")
                             
                             
                             if tablero1.mapa[c] == lista:
@@ -212,9 +207,6 @@ class player(peon,tablero):
                                 
                                 main1.main()
                                 break
-=======
-                
->>>>>>> main
         
         if dir == 9:
             m = True
@@ -224,9 +216,6 @@ class player(peon,tablero):
                         if x == player3.nombre:
                             c = tablero1.mapa.index(lista)
                             #print(c)
-                            if c == 0:
-                                print("Invalido")
-                                break
                             
                             if tablero1.mapa[c] == lista:
 
