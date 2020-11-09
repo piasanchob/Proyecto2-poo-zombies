@@ -16,7 +16,7 @@ class player(peon,tablero):
         self.nombre = nombre
         self.vida = vida
         self.items = items
-    
+
     
     def mover(self,dir):
         
@@ -71,6 +71,7 @@ class player(peon,tablero):
                         else:
                             print("invalido")
 
+<<<<<<< HEAD
         if dir == 4:
             m = True
             while m == True:
@@ -211,6 +212,9 @@ class player(peon,tablero):
                                 
                                 main1.main()
                                 break
+=======
+                
+>>>>>>> main
         
         if dir == 9:
             m = True
