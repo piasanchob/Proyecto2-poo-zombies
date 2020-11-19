@@ -1,5 +1,6 @@
 import random
 from tkinter import *
+from tkinter import messagebox
 
 class tablero():
     def __init__(self,mapa):
@@ -47,12 +48,12 @@ class player(peon,tablero):
                                         cont += 1
                                         break
                                     else:
-                                        print("invalido")
+                                        messagebox.showinfo(message = "invalido",title = ".")
                                         
                                 else:
-                                    print("invalido")
+                                    messagebox.showinfo(message = "invalido",title = ".")
                             else:
-                                print("invalido")
+                                messagebox.showinfo(message = "invalido",title = ".")
             if dir == 2:
                 for lista in tablero1.mapa:
                     for x in lista:
@@ -78,9 +79,9 @@ class player(peon,tablero):
                                     #else:
                                         #print("invalido")
                                 else:
-                                    print("invalido")
+                                    messagebox.showinfo(message = "invalido",title = ".")
                             else:
-                                print("invalido")
+                                messagebox.showinfo(message = "invalido",title = ".")
             if dir == 3:
                 for lista in tablero1.mapa:
                     for x in lista:
@@ -88,7 +89,7 @@ class player(peon,tablero):
                             
                             nuevo = lista.index(player3.nombre) + 2
                             if nuevo != 8:
-                                if lista[nuevo] != zombiex.nombre or lista[nuevo] != zombiey.nombre or lista[nuevo] != zombiez.nombre:
+                                if lista[nuevo] != zombiex.nombre and lista[nuevo] != zombiey.nombre and lista[nuevo] != zombiez.nombre:
                                     
                                     if lista[nuevo] != "obstaculo":
                                         viejo = lista.index(player3.nombre)
@@ -103,113 +104,154 @@ class player(peon,tablero):
                                         
                                     
                                     else:
-                                        print("Invalido")
+                                        messagebox.showinfo(message = "invalido",title = ".")
                                 else:
-                                    print("invalido")
+                                    messagebox.showinfo(message = "invalido",title = ".")
 
                             else:
-                                print("invalido")
+                                messagebox.showinfo(message = "invalido",title = ".")
 
             if dir == 4:
-                m = True
-                while m == True:
+               pinto = True
+               m = True
+               while m:
                     for lista in tablero1.mapa:
-                        for x in lista:
-                            if x == player1.nombre:
-                                c = tablero1.mapa.index(lista)
-                                #print(c)
-                                if c == 4:
-                                    c = -1
-                                    break
-                                if tablero1.mapa[c] == lista:
+                        if not pinto:
+                            break
+                        else:
+                            for x in lista:
+                                if x == player1.nombre:
+                                    c = tablero1.mapa.index(lista)
+                                    #print(c)
+                                    #if c == 4:
+                                        #print("invalido")
+                                        #break
+                                        
+                                    if tablero1.mapa[c] == lista:
 
+                                        
+                                        viejo = lista.index(player1.nombre)
+                                        if tablero1.mapa[c + 1][viejo] != "obstaculo":
+                                            if tablero1.mapa[c + 1][viejo] != zombiex.nombre and tablero1.mapa[c + 1][viejo] != zombiey.nombre and tablero1.mapa[c + 1][viejo] != zombiez.nombre:
+                                            
 
-                                    viejo = lista.index(player1.nombre)
-                                    lista[viejo] = 0
-                                    print(c)
-                                    lista = tablero1.mapa[c+1]
-                                    lista[viejo] = player1.nombre
-                                    for x in tablero1.mapa:
-                                        print(x)
-                                    tablerogui(ventana,tablero1.mapa)
-                                    cont += 1
-                                    m = False
-                                    
-                                    
-                                    if player2.vida == False and player3.vida == False:
-                                        main1.zzombie()
-                                        break
-                                    
-                                    
+                                                lista[viejo] = 0
+                                                print(c)
+                                                if c == 4:
+                                                    c = -1
+                                                #main1.main()
+                                                
+                                                lista = tablero1.mapa[c+1]
+                                                lista[viejo] = player1.nombre
+                                                for x in tablero1.mapa:
+                                                    print(x)
+                                                tablerogui(ventana,tablero1.mapa)
+                                                cont += 1
+                                                pinto = False
+                                                m = False
+                                                
+                                                
+                                                
+                                                if player2.vida == False and player3.vida == False:
+                                                    main1.zzombie()
+                                                    break
+                                            else: 
+                                                messagebox.showinfo(message = "invalido",title = ".")
+                                                break
+                                        else:
+                                            messagebox.showinfo(message = "invalido",title = ".")
+                                            break
+
+                                        
             if dir == 5:
+                pinto = True
                 m = True
-                while m == True:
+                while m:
                     for lista in tablero1.mapa:
-                        for x in lista:
-                            if x == player2.nombre:
-                                c = tablero1.mapa.index(lista)
-                                print(c)
-                                if c == 4:
-                                    c = -1
-                                    #main1.main()
-                                    break
+                        if not pinto:
+                            break
+                        else:
+                            for x in lista:
+                                if x == player2.nombre:
+                                    c = tablero1.mapa.index(lista)
+                                    print(c)
+                                    
+                                    
+                                    if tablero1.mapa[c] == lista:
+
+
+                                        viejo = lista.index(player2.nombre)
+                                        if tablero1.mapa[c + 1][viejo] != zombiex.nombre and tablero1.mapa[c + 1][viejo] != zombiey.nombre and tablero1.mapa[c + 1][viejo] != zombiez.nombre:
+                                            lista[viejo] = 0
+                                            if c == 4:
+                                                c = -1
+                                            #main1.main()
+                                            
+                                            
+                                            lista = tablero1.mapa[c+1]
+                                            lista[viejo] = player2.nombre
+                                            for x in tablero1.mapa:
+                                                print(x)
+                                            tablerogui(ventana,tablero1.mapa)
+                                            cont += 1
+                                            m = False
+                                            pinto = False
+
+                                            #break
+                                            
+                                            
+                                            
+                                            if player3.vida == False:
+                                                main1.zzombie()
+                                                break
+                                        else:
+                                            messagebox.showinfo(message = "invalido",title = ".")
+                                        
+                                        
                                 
-                                if tablero1.mapa[c] == lista:
-
-
-                                    viejo = lista.index(player2.nombre)
-                                    lista[viejo] = 0
-                                    
-                                    lista = tablero1.mapa[c+1]
-                                    lista[viejo] = player2.nombre
-                                    for x in tablero1.mapa:
-                                        print(x)
-                                    tablerogui(ventana,tablero1.mapa)
-                                    cont += 1
-                                    m = False
-                                    
-                                    
-                                    
-                                    if player3.vida == False:
-                                       main1.zzombie()
-                                       break
-
-                                    
-                                    
-                            
 
             if dir == 6:
-                m = True
-                while m == True:
+               pinto = True
+               m = True
+               while m:
                     for lista in tablero1.mapa:
-                        for x in lista:
-                            if x == player3.nombre:
-                                c = tablero1.mapa.index(lista)
-                                print(c)
-                                if c == 4:
-                                    c = -1
-                                    #main1.main()
-                                    break
-                                
-                                if tablero1.mapa[c] == lista:
+                        if not pinto:
+                            for x in lista:
+                                if x == player3.nombre:
+                                    c = tablero1.mapa.index(lista)
+                                    print(c)
+                                    #if c == 4:
+                                        #c = -1
+                                        #main1.main()
+                                        #break
+                                    
+                                    if tablero1.mapa[c] == lista:
 
 
-                                    viejo = lista.index(player3.nombre)
-                                    lista[viejo] = 0
-                                    if c == 4:
-                                        c = -1
-                                    lista = tablero1.mapa[c+2]
-                                    lista[viejo] = player3.nombre
-                                    for x in tablero1.mapa:
-                                        print(x)
-                                    tablerogui(ventana,tablero1.mapa)
-                                    cont += 1
-                                    m = False
-                                    
-                                    
-                                    main1.zzombie()
-
-                                    
+                                        viejo = lista.index(player3.nombre)
+                                        if tablero1.mapa[c + 1][viejo] != "obstaculo":
+                                            if tablero1.mapa[c + 1][viejo] != zombiex.nombre and tablero1.mapa[c + 1][viejo] != zombiey.nombre and tablero1.mapa[c + 1][viejo] != zombiez.nombre:
+                                            
+                                                lista[viejo] = 0
+                                                if c == 3:
+                                                    c = -1
+                                                lista = tablero1.mapa[c+2]
+                                                lista[viejo] = player3.nombre
+                                                for x in tablero1.mapa:
+                                                    print(x)
+                                                tablerogui(ventana,tablero1.mapa)
+                                                cont += 1
+                                                m = False
+                                                pinto = False
+                                                
+                                                
+                                                
+                                                main1.zzombie()
+                                                break
+                                            else:
+                                                messagebox.showinfo(message = "invalido",title = ".")
+                                        else:
+                                            messagebox.showinfo(message = "invalido",title = ".")
 
             if dir == 7:
                 m = True
@@ -225,21 +267,30 @@ class player(peon,tablero):
 
 
                                     viejo = lista.index(player1.nombre)
-                                    lista[viejo] = 0
-                                    
-                                    lista = tablero1.mapa[c-1]
-                                    lista[viejo] = player1.nombre
-                                    for x in tablero1.mapa:
-                                        print(x)
-                                    tablerogui(ventana,tablero1.mapa)
-                                    cont += 1
-                                    m = False
+                                    if tablero1.mapa[c - 1][viejo] != "obstaculo":
+                                        if tablero1.mapa[c - 1][viejo] != zombiex.nombre and tablero1.mapa[c - 1][viejo] != zombiey.nombre and tablero1.mapa[c - 1][viejo] != zombiez.nombre:
+                                            
+                                            lista[viejo] = 0
+                                            
+                                            lista = tablero1.mapa[c-1]
+                                            lista[viejo] = player1.nombre
+                                            for x in tablero1.mapa:
+                                                print(x)
+                                            tablerogui(ventana,tablero1.mapa)
+                                            cont += 1
+                                            m = False
 
-                                    
-                                    if player2.vida == False and player3.vida == False:
-                                        main1.zzombie()
+                                            
+                                            if player2.vida == False and player3.vida == False:
+                                                main1.zzombie()
+                                                break
+                                        else:
+                                            messagebox.showinfo(message = "invalido",title = ".")
+                                            break
+                                    else:
+                                        messagebox.showinfo(message = "invalido",title = ".")
                                         break
-                                       
+
                                     
             
             if dir == 8:
@@ -256,20 +307,23 @@ class player(peon,tablero):
 
 
                                     viejo = lista.index(player2.nombre)
-                                    lista[viejo] = 0
-                                    
-                                    lista = tablero1.mapa[c-1]
-                                    lista[viejo] = player2.nombre
-                                    for x in tablero1.mapa:
-                                        print(x)
-                                    tablerogui(ventana,tablero1.mapa)
-                                    cont += 1
-                                    m = False
-                                    
-                                    if player3.vida == False:
-                                        main1.zzombie()
-                                        break
+                                    if tablero1.mapa[c - 1][viejo] != zombiex.nombre and tablero1.mapa[c -1][viejo] != zombiey.nombre and tablero1.mapa[c - 1][viejo] != zombiez.nombre:
+                                         
+                                        lista[viejo] = 0
                                         
+                                        lista = tablero1.mapa[c-1]
+                                        lista[viejo] = player2.nombre
+                                        for x in tablero1.mapa:
+                                            print(x)
+                                        tablerogui(ventana,tablero1.mapa)
+                                        cont += 1
+                                        m = False
+                                        
+                                        if player3.vida == False:
+                                            main1.zzombie()
+                                            break
+                                    else:
+                                        messagebox.showinfo(message = "invalido",title = ".")    
 
             
             if dir == 9:
@@ -282,59 +336,79 @@ class player(peon,tablero):
                                 #print(c)
                                 
                                 if tablero1.mapa[c] == lista:
-
-
                                     viejo = lista.index(player3.nombre)
-                                    lista[viejo] = 0
-                                    
-                                    lista = tablero1.mapa[c-1]
-                                    lista[viejo] = player3.nombre
-                                    for x in tablero1.mapa:
-                                        print(x)
-                                    tablerogui(ventana,tablero1.mapa)
-                                    cont += 1
-                                    m = False
-                                    
-                                    main1.zzombie()
-                                    break
 
+                                    if tablero1.mapa[c - 1][viejo] != "obstaculo":
+                                        if tablero1.mapa[c - 1][viejo] != zombiex.nombre and tablero1.mapa[c - 1][viejo] != zombiey.nombre and tablero1.mapa[c - 1][viejo] != zombiez.nombre:
+                                        
+                                            
+                                            lista[viejo] = 0
+                                            
+                                            lista = tablero1.mapa[c-1]
+                                            lista[viejo] = player3.nombre
+                                            for x in tablero1.mapa:
+                                                print(x)
+                                            tablerogui(ventana,tablero1.mapa)
+                                            cont += 1
+                                            m = False
+                                            
+                                            main1.zzombie()
+                                            break
+                                        else:
+                                            messagebox.showinfo(message = "invalido",title = ".")
+                                    else:
+                                        messagebox.showinfo(message = "invalido",title = ".")
             if dir == 10:
                 for lista in tablero1.mapa:
                     for x in lista:
                         if x == player1.nombre:
                             if lista.index(player1.nombre) == 1:
-                                print("invalido")
+                                messagebox.showinfo(message = "invalido",title = ".")
+                                break
                             nuevo = lista.index(player1.nombre) - 1
                             
                             viejo = lista.index(player1.nombre)
-                            lista[viejo] = 0
-                            lista[nuevo] = player1.nombre
-                            for x in tablero1.mapa:
-                                print(x)
-                            tablerogui(ventana,tablero1.mapa)
-                            cont += 1
-                            if player2.vida == False and player3.vida == False:
-                                main1.zzombie()
-                                break
+                            if lista[nuevo] != zombiex.nombre and lista[nuevo] != zombiey.nombre and lista[nuevo] != zombiez.nombre:
+                                    
+                                if lista[nuevo] != "obstaculo":
+                                    lista[viejo] = 0
+                                    lista[nuevo] = player1.nombre
+                                    for x in tablero1.mapa:
+                                        print(x)
+                                    tablerogui(ventana,tablero1.mapa)
+                                    cont += 1
+                                    if player2.vida == False and player3.vida == False:
+                                        main1.zzombie()
+                                        break
+                                else:
+                                    messagebox.showinfo(message = "invalid")
 
+                            else:
+                                messagebox.showinfo(message = "invalid")
+
+                                
             if dir == 11:
                 for lista in tablero1.mapa:
                     for x in lista:
                         if x == player2.nombre:
                             if lista.index(player2.nombre) == 1:
-                                print("invalido")
+                                messagebox.showinfo(message = "invalid")
                             nuevo = lista.index(player2.nombre) - 1
                             
                             viejo = lista.index(player2.nombre)
-                            lista[viejo] = 0
-                            lista[nuevo] = player2.nombre
-                            for x in tablero1.mapa:
-                                print(x)
-                            tablerogui(ventana,tablero1.mapa)
-                            cont += 1
-                            if player3.vida == False:
-                                main1.zzombie()
-                                break
+                            if lista[nuevo] != zombiex.nombre and lista[nuevo] != zombiey.nombre and lista[nuevo] != zombiez.nombre:
+                             
+                                lista[viejo] = 0
+                                lista[nuevo] = player2.nombre
+                                for x in tablero1.mapa:
+                                    print(x)
+                                tablerogui(ventana,tablero1.mapa)
+                                cont += 1
+                                if player3.vida == False:
+                                    main1.zzombie()
+                                    break
+                            else:
+                                messagebox.showinfo(message = "invalid")
 
             if dir == 12:
                 
@@ -342,93 +416,138 @@ class player(peon,tablero):
                     for x in lista:
                         if x == player3.nombre:
                             if lista.index(player3.nombre) == 1:
-                                print("invalido")
+                                messagebox.showinfo(message = "invalid")
                                 #main1.main()
                                 break
                             nuevo = lista.index(player3.nombre) - 1
                             
                             viejo = lista.index(player3.nombre)
-                            lista[viejo] = 0
-                            lista[nuevo] = player3.nombre
-                            for x in tablero1.mapa:
-                                print(x)
-                            tablerogui(ventana,tablero1.mapa)
-                            cont += 1
-                            main1.zzombie()
-                            break
-                       
+                            if lista[nuevo] != zombiex.nombre and lista[nuevo] != zombiey.nombre and lista[nuevo] != zombiez.nombre:
+                                    
+                                if lista[nuevo] != "obstaculo":
+                                    lista[viejo] = 0
+                                    lista[nuevo] = player3.nombre
+                                    for x in tablero1.mapa:
+                                        print(x)
+                                    tablerogui(ventana,tablero1.mapa)
+                                    cont += 1
+                                    main1.zzombie()
+                                    break
+                                else:
+                                    messagebox.showinfo(message = "invalid")
+
+
+
+                            else:
+                                 messagebox.showinfo(message = "invalid")
+
+
 
     def atacar(self,atq):
         
         
         if atq == 1:
+            atk = True
             for lista in tablero1.mapa:
+                if not atk:
+                    break
+                else:
                     for x in lista:
                         if x == player1.nombre:
                             aux = lista
                             i = lista.index(x)
                             nuevo = lista.index(player1.nombre) + 1
                             atras = lista.index(player1.nombre) - 1
-                            
+                            print("entro")
                             if lista[nuevo] == zombiex.nombre: 
-                                lista[nuevo] == zombiex.items
+                                lista[nuevo] = zombiex.items
+                                zombiex.vida = False
                                 tablerogui(ventana,tablero1.mapa)
+                                atk = False
                                 break
 
                             if lista[nuevo] == zombiey.nombre: 
-                                lista[nuevo] == zombiey.items
+                                lista[nuevo] = zombiey.items
+                                zombiey.vida = False
                                 tablerogui(ventana,tablero1.mapa)
+                                atk = False
                                 break
                             if lista[nuevo] == zombiez.nombre: 
-                                lista[nuevo] == zombiez.items
+                                lista[nuevo] = zombiez.items
+                                zombiez.vida = False
                                 tablerogui(ventana,tablero1.mapa)
+                                atk = False
                                 break
 
                             if lista[atras] == zombiex.nombre: 
-                                lista[atras] == zombiex.items
+                                lista[atras] = zombiex.items
+                                zombiex.vida = False
                                 tablerogui(ventana,tablero1.mapa)
+                                atk = False
                                 break
                             if lista[atras] == zombiey.nombre: 
-                                lista[atras] == zombiey.items
+                                lista[atras] = zombiey.items
+                                zombiey.vida = False
                                 tablerogui(ventana,tablero1.mapa)
+                                atk = False
                                 break
                             if lista[atras] == zombiez.nombre: 
-                                lista[atras] == zombiez.items
+                                lista[atras] = zombiez.items
+                                zombiez.vida = False
                                 tablerogui(ventana,tablero1.mapa)
+                                atk = False
                                 break
+                            
                             num = tablero1.mapa.index(lista) - 1
-                            print(num)
-                            print(i)
+                            print("atq")
+                            
                             try:
                                 arriba = tablero1.mapa[num][i]
                                 if arriba == zombiex.nombre: 
-                                    arriba == zombiex.items
+                                    arriba = zombiex.items
+                                    zombiex.vida = False
                                     tablerogui(ventana,tablero1.mapa)
+                                    atk = False
+                                    break
                                 if arriba == zombiey.nombre: 
-                                    arriba == zombiey.items
+                                    arriba = zombiey.items
+                                    zombiey.vida = False
                                     tablerogui(ventana,tablero1.mapa)
+                                    atk = False
+                                    break
                                 if arriba == zombiez.nombre: 
-                                    arriba == zombiez.items
+                                    arriba = zombiez.items
+                                    zombiez.vida = False
                                     tablerogui(ventana,tablero1.mapa)
-                                
-                                break
-                            except:
+                                    atk = False
+                                    break
+                            
+                            
+                            except IndexError:
+
                                 try:
                                     num2 = tablero1.mapa.index(lista) + 1
                                     
                                     abajo = tablero1.mapa[num2][i]
                                     if abajo == zombiex.nombre: 
-                                        abajo == zombiex.items
+                                        abajo = zombiex.items
+                                        zombiex.vida = False
                                         tablerogui(ventana,tablero1.mapa)
+                                        atk = False
                                     if abajo == zombiey.nombre: 
-                                        abajo == zombiey.items
+                                        abajo = zombiey.items
+                                        zombiey.vida = False
                                         tablerogui(ventana,tablero1.mapa)
+                                        atk = False
                                     if abajo == zombiez.nombre: 
-                                        abajo == zombiez.items
+                                        abajo = zombiez.items
+                                        zombiex.vida = False
                                         tablerogui(ventana,tablero1.mapa)
+                                        atk = False
                                     break
-                                except:
+                                except IndexError:
                                     print("no deberia llegar aqui")
+                                    atk = False
                                     break        
                     
                     if player2.vida == False and player3.vida == False:
@@ -437,8 +556,11 @@ class player(peon,tablero):
 
                                 
         if atq ==2:
-            
+            atk = True
             for lista in tablero1.mapa:
+                if not atk:
+                    break
+                else:
                     for x in lista:
                         if x == player2.nombre:
                             aux = lista
@@ -448,70 +570,106 @@ class player(peon,tablero):
                             
                             if lista[nuevo] == zombiex.nombre: 
                                 lista[nuevo] = zombiex.items
+                                zombiex.vida = False
                                 tablerogui(ventana,tablero1.mapa)
+                                atk = False
                                 break
                             if lista[nuevo] == zombiey.nombre: 
                                 
                                 lista[nuevo] = zombiey.items
+                                zombiey.vida = False
                                 tablerogui(ventana,tablero1.mapa)
+                                atk = False
                                 break
                             if lista[nuevo] == zombiez.nombre: 
                                 lista[nuevo] = zombiez.items
+                                zombiez.vida = False
                                 tablerogui(ventana,tablero1.mapa)
+                                atk = False
                                 break
 
                             if lista[atras] == zombiex.nombre: 
                                 lista[atras] = zombiex.items
+                                zombiex.vida = False
                                 tablerogui(ventana,tablero1.mapa)
+                                atk = False
                                 break
                             if lista[atras] == zombiey.nombre: 
                                 lista[atras] = zombiey.items
+                                zombiey.vida = False
                                 tablerogui(ventana,tablero1.mapa)
+                                atk = False
                                 break
                             if lista[atras] == zombiez.nombre: 
                                 lista[atras] = zombiez.items
+                                zombiez.vida = False
                                 tablerogui(ventana,tablero1.mapa)
+                                atk = False
                                 break
                             num = tablero1.mapa.index(lista) - 1
                             
                             try:
+                                
                                 arriba = tablero1.mapa[num][i]
+                                #rint(arriba)
                                 if arriba == zombiex.nombre: 
                                     arriba = zombiex.items
+                                    zombiex.vida = False
+                                    tablero1.mapa[num][i] = "Latigo"
                                     tablerogui(ventana,tablero1.mapa)
+                                    atk = False
+                                print(arriba)
                                 if arriba == zombiey.nombre: 
                                     arriba = zombiey.items
+                                    tablero1.mapa[num][i] = "Espada"
+                                    print("cambio")
+                                    print(zombiey.items)
+                                    zombiey.vida = False
                                     tablerogui(ventana,tablero1.mapa)
+                                    atk = False
                                 if arriba == zombiez.nombre: 
                                     arriba = zombiez.items
+                                    zombiez.vida = False
+                                    tablero1.mapa[num][i] = "Pocion"
                                     tablerogui(ventana,tablero1.mapa)
+                                    atk = False
                                 
                                 break
-                            except:
-                                try:
-                                    num2 = tablero1.mapa.index(lista) + 1
-                                    
-                                    abajo = tablero1.mapa[num2][i]
-                                    if abajo == zombiex.nombre: 
-                                        abajo = zombiex.items
-                                        tablerogui(ventana,tablero1.mapa)
-                                    if abajo == zombiey.nombre: 
-                                        abajo = zombiey.items
-                                        tablerogui(ventana,tablero1.mapa)
-                                    if abajo == zombiez.nombre: 
-                                        abajo = zombiez.items
-                                        tablerogui(ventana,tablero1.mapa)
-                                    break
-                                except:
-                                    print("no deberia llegar aqui")
-                                    break        
-                    
+                            except IndexError:
+                                
+                                num2 = tablero1.mapa.index(lista) + 1
+                                
+                                abajo = tablero1.mapa[num2][i]
+                                if abajo == zombiex.nombre: 
+                                    abajo = zombiex.items
+                                    zombiex.vida = False
+                                    tablero1.mapa[num][i] = "Latigo"
+                                    tablerogui(ventana,tablero1.mapa)
+                                    atk = False
+                                if abajo == zombiey.nombre: 
+                                    abajo = zombiey.items
+                                    zombiey.vida = False
+                                    tablero1.mapa[num][i] = "Espada"
+                                    tablerogui(ventana,tablero1.mapa)
+                                    atk = False
+                                if abajo == zombiez.nombre: 
+                                    abajo = zombiez.items
+                                    zombiez.vida = False
+                                    tablero1.mapa[num][i] = "Pocion"
+                                    tablerogui(ventana,tablero1.mapa)
+                                    atk = False
+                                break
+                                
                     if player3.vida == False:
                         main1.zzombie()
 
 
         if atq == 3:
+            atk = True
             for lista in tablero1.mapa:
+                if not atk:
+                    break
+                else:
                     for x in lista:
                         if x == player3.nombre:
                             aux = lista
@@ -521,28 +679,40 @@ class player(peon,tablero):
                             
                             if lista[nuevo] == zombiex.nombre: 
                                 lista[nuevo] = zombiex.items
+                                zombiex.vida = False
                                 tablerogui(ventana,tablero1.mapa)
+                                atk = False
                                 break
                             if lista[nuevo] == zombiey.nombre: 
                                 lista[nuevo] = zombiey.items
+                                zombiey.vida = False
                                 tablerogui(ventana,tablero1.mapa)
+                                atk = False
                                 break
                             if lista[nuevo] == zombiez.nombre: 
                                 lista[nuevo] = zombiez.items
+                                zombiez.vida = False
                                 tablerogui(ventana,tablero1.mapa)
+                                atk = False
                                 break
 
                             if lista[atras] == zombiex.nombre: 
                                 lista[atras] = zombiex.items
+                                zombiex.vida = False
                                 tablerogui(ventana,tablero1.mapa)
+                                atk = False
                                 break
                             if lista[atras] == zombiey.nombre: 
                                 lista[atras] = zombiey.items
+                                zombiey.vida = False
                                 tablerogui(ventana,tablero1.mapa)
+                                atk = False
                                 break
                             if lista[atras] == zombiez.nombre: 
                                 lista[atras] = zombiez.items
+                                zombiez.vida = False
                                 tablerogui(ventana,tablero1.mapa)
+                                atk = False
                                 break
                             num = tablero1.mapa.index(lista) - 1
                             print(num)
@@ -551,33 +721,49 @@ class player(peon,tablero):
                                 arriba = tablero1.mapa[num][i]
                                 if arriba == zombiex.nombre: 
                                     arriba = zombiex.items
+                                    zombiex.vida = False
+                                    tablero1.mapa[num][i] = "Latigo"
                                     tablerogui(ventana,tablero1.mapa)
+                                    atk = False
                                 if arriba == zombiey.nombre: 
                                     arriba = zombiey.items
+                                    zombiey.vida = False
+                                    tablero1.mapa[num][i] = "Espada"
                                     tablerogui(ventana,tablero1.mapa)
+                                    atk = False
                                 if arriba == zombiez.nombre: 
                                     arriba = zombiez.items
+                                    zombiez.vida = False
+                                    tablero1.mapa[num][i] = "Pocion"
                                     tablerogui(ventana,tablero1.mapa)
+                                    atk = False
                                 
                                 break
-                            except:
-                                try:
-                                    num2 = tablero1.mapa.index(lista) + 1
+                            except IndexError:
+                                
+                                num2 = tablero1.mapa.index(lista) + 1
+                                
+                                abajo = tablero1.mapa[num2][i]
+                                if abajo == zombiex.nombre: 
+                                    abajo = zombiex.items
+                                    zombiex.vida = False
+                                    tablero1.mapa[num][i] = "Latigo"
+                                    tablerogui(ventana,tablero1.mapa)
+                                    atk = False
+                                if abajo == zombiey.nombre: 
+                                    abajo = zombiey.items
+                                    zombiey.vida = False
+                                    tablero1.mapa[num][i] = "Espada"
+                                    tablerogui(ventana,tablero1.mapa)
+                                    atk = False
+                                if abajo == zombiez.nombre: 
+                                    abajo = zombiez.items
+                                    zombiez.vida = False
+                                    tablero1.mapa[num][i] = "Pocion"
+                                    tablerogui(ventana,tablero1.mapa)
+                                    atk = False
+                                break
                                     
-                                    abajo = tablero1.mapa[num2][i]
-                                    if abajo == zombiex.nombre: 
-                                        abajo = zombiex.items
-                                        tablerogui(ventana,tablero1.mapa)
-                                    if abajo == zombiey.nombre: 
-                                        abajo = zombiey.items
-                                        tablerogui(ventana,tablero1.mapa)
-                                    if abajo == zombiez.nombre: 
-                                        abajo = zombiez.items
-                                        tablerogui(ventana,tablero1.mapa)
-                                    break
-                                except:
-                                    print("no deberia llegar aqui")
-                                    break        
                     main1.zzombie()
 
                             
@@ -616,12 +802,12 @@ class zombie(tablero,peon):
                             continue
                             #break                            
                         else: 
-                            print("invalido")
+                            messagebox.showinfo(message = "invalido")
                             #break
                         
                     else:
-                        print("zombiex")
-                        print("ganaron los zombies")
+                        #print("zombiex")
+                        messagebox.showinfo(message = "ganaron los zombies")
                         break
     def ymover(self): 
         for lista in tablero1.mapa:
@@ -633,7 +819,7 @@ class zombie(tablero,peon):
                             main1.zzombieatq()
                             break
                         if lista[nuevo] == "obstaculo":
-                            print("invalido")
+                            messagebox.showinfo(message = "invalido")
                         if lista[nuevo] == 0:
                             viejo = lista.index(zombiey.nombre)
                             lista[viejo] = 0
@@ -648,11 +834,11 @@ class zombie(tablero,peon):
                             break
                             
                         else: 
-                            print("invalido")
+                            messagebox.showinfo(message = "invalido")
                             #break
                         
                     else:
-                        print("ganaron los zombies")
+                        messagebox.showinfo(message = "ganaron los zombies")
                         break
     def zmover(self):
         for lista in tablero1.mapa:
@@ -679,10 +865,10 @@ class zombie(tablero,peon):
                                 #main1.main()
                                 break
                             else: 
-                                print("invalido")
+                                messagebox.showinfo(message = "invalido")
                                 #break
                     else:
-                        print("ganaron los zombies")
+                        messagebox.showinfo(message = "ganaron los zombies")
                         break
                
 
@@ -751,6 +937,7 @@ class zombie(tablero,peon):
                         if arriba == player1.nombre: 
                             arriba = player1.items
                             player1.vida = False
+                            tablero1.mapa[num][i] = "Pistola"
                             for x in tablero1.mapa:
                                 print(x)
                             tablerogui(ventana,tablero1.mapa)
@@ -758,6 +945,7 @@ class zombie(tablero,peon):
                         if arriba == player2.nombre: 
                             arriba = player2.items
                             player2.vida = False
+                            tablero1.mapa[num][i] = "Cuchillo"
                             for x in tablero1.mapa:
                                 print(x)
                             tablerogui(ventana,tablero1.mapa)
@@ -765,13 +953,14 @@ class zombie(tablero,peon):
                         if arriba == player3.nombre: 
                             arriba = player3.items
                             player3.vida = False
+                            tablero1.mapa[num][i] = "Veneno"
                             for x in tablero1.mapa:
                                 print(x)
                             tablerogui(ventana,tablero1.mapa)
                             break
                         
-                        break
-                    except:
+                        
+                    except IndexError:
                         try:
                             num2 = tablero1.mapa.index(lista) + 1
                             
@@ -779,6 +968,7 @@ class zombie(tablero,peon):
                             if abajo == player1.nombre: 
                                 abajo = player1.items
                                 player1.vida = False
+                                tablero1.mapa[num][i] = "Pistola"
                                 for x in tablero1.mapa:
                                     print(x)
                                 tablerogui(ventana,tablero1.mapa)
@@ -786,6 +976,7 @@ class zombie(tablero,peon):
                             if abajo == player2.nombre: 
                                 abajo = player2.items
                                 player2.vida = False
+                                tablero1.mapa[num][i] = "Cuchillo"
                                 for x in tablero1.mapa:
                                     print(x)
                                 tablerogui(ventana,tablero1.mapa)
@@ -793,6 +984,7 @@ class zombie(tablero,peon):
                             if abajo == player3.nombre: 
                                 abajo = player3.items
                                 player3.vida = False
+                                tablero1.mapa[num][i] = "Veneno"
                                 for x in tablero1.mapa:
                                     print(x)
                                 tablerogui(ventana,tablero1.mapa)
@@ -870,6 +1062,7 @@ class zombie(tablero,peon):
                         if arriba == player1.nombre: 
                             arriba = player1.items
                             player1.vida = False
+                            tablero1.mapa[num][i] = "Pistola"
                             for x in tablero1.mapa:
                                 print(x)
                             tablerogui(ventana,tablero1.mapa)
@@ -877,6 +1070,7 @@ class zombie(tablero,peon):
                         if arriba == player2.nombre: 
                             arriba = player2.items
                             player2.vida = False
+                            tablero1.mapa[num][i] = "Cuchillo"
                             for x in tablero1.mapa:
                                 print(x)
                             tablerogui(ventana,tablero1.mapa)
@@ -884,13 +1078,14 @@ class zombie(tablero,peon):
                         if arriba == player3.nombre: 
                             arriba = player3.items
                             player3.vida = False
+                            tablero1.mapa[num][i] = "Veneno"
                             for x in tablero1.mapa:
                                 print(x)
                             tablerogui(ventana,tablero1.mapa)
                             break
                             
                         
-                    except:
+                    except IndexError:
                         try:
                             num2 = tablero1.mapa.index(lista) + 1
                                 
@@ -995,6 +1190,7 @@ class zombie(tablero,peon):
                         if arriba == player1.nombre: 
                             arriba = player1.items
                             player1.vida = False
+                            tablero1.mapa[num][i] = "Pistola"
                             for x in tablero1.mapa:
                                 print(x)
                             tablerogui(ventana,tablero1.mapa)
@@ -1004,6 +1200,7 @@ class zombie(tablero,peon):
                         if arriba == player2.nombre: 
                             arriba = player2.items
                             player2.vida = False
+                            tablero1.mapa[num][i] = "Cuchillo"
                             for x in tablero1.mapa:
                                 print(x)
                             tablerogui(ventana,tablero1.mapa)
@@ -1013,6 +1210,7 @@ class zombie(tablero,peon):
                         if arriba == player3.nombre: 
                             arriba = player3.items
                             player3.vida = False
+                            tablero1.mapa[num][i] = "Veneno"
                             for x in tablero1.mapa:
                                 print(x)
                             tablerogui(ventana,tablero1.mapa)
@@ -1021,7 +1219,7 @@ class zombie(tablero,peon):
                             break
                             
                         
-                    except:
+                    except IndexError:
                         try:
                             num2 = tablero1.mapa.index(lista) + 1
                                 
@@ -1029,6 +1227,7 @@ class zombie(tablero,peon):
                             if abajo == player1.nombre: 
                                 abajo = player1.items
                                 player1.vida = False
+                                tablero1.mapa[num][i] = "Pistola"
                                 for x in tablero1.mapa:
                                     print(x)
                                 tablerogui(ventana,tablero1.mapa)
@@ -1038,6 +1237,7 @@ class zombie(tablero,peon):
                             if abajo == player2.nombre: 
                                 abajo = player2.items
                                 player2.vida = False
+                                tablero1.mapa[num][i] = "Cuchillo"
                                 for x in tablero1.mapa:
                                     print(x)
                                 tablerogui(ventana,tablero1.mapa)
@@ -1047,6 +1247,7 @@ class zombie(tablero,peon):
                             if abajo == player3.nombre: 
                                 abajo = player3.items
                                 player3.vida = False
+                                tablero1.mapa[num][i] = "Veneno"
                                 for x in tablero1.mapa:
                                     print(x)
                                 tablerogui(ventana,tablero1.mapa)
@@ -1150,12 +1351,13 @@ class main2():
                 if player1.vida == False:
                     if player2.vida == False:
                         if player3.vida == False:
-                            print("ganaron los zombies")
+                            messagebox.showinfo(message = "ganaron los zombies")
+                            break
         for lista in tablero1.mapa:
                 if zombiex.vida == False:
                     if zombiey.vida == False:
                         if zombiez.vida == False:
-                            print("ganaron los jugadores")
+                            messagebox.showinfo(message = "ganaron los jugadores")
                             break
 
     
