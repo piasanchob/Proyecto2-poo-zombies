@@ -1444,7 +1444,6 @@ class ventanaJuego():
         player2mover.place(x=760, y=40)
         player3mover= Button(ventana, text="PLAYER3 m",
                         command=lambda: ventana.after(200, main1.main(3)))
-        player3mover.place(x=760, y=60)
 
         player1atq = Button(ventana, text="PLAYER1 a",
                         command=lambda: ventana.after(200, player1.atacar(1)))
@@ -1488,3 +1487,4 @@ main1 = main2()
 #main1.main(1)
 #main1.zzombie()
 ventana.mainloop()
+        player3mover.place(x=760, y=60)
