@@ -49,11 +49,14 @@ class player(peon,tablero):
                                         break
                                     else:
                                         messagebox.showinfo(message = "invalido",title = ".")
+                                        break
                                         
                                 else:
                                     messagebox.showinfo(message = "invalido",title = ".")
+                                    break
                             else:
                                 messagebox.showinfo(message = "invalido",title = ".")
+                                break
             if dir == 2:
                 for lista in tablero1.mapa:
                     for x in lista:
@@ -80,8 +83,10 @@ class player(peon,tablero):
                                         #print("invalido")
                                 else:
                                     messagebox.showinfo(message = "invalido",title = ".")
+                                    break
                             else:
                                 messagebox.showinfo(message = "invalido",title = ".")
+                                break
             if dir == 3:
                 for lista in tablero1.mapa:
                     for x in lista:
@@ -105,11 +110,14 @@ class player(peon,tablero):
                                     
                                     else:
                                         messagebox.showinfo(message = "invalido",title = ".")
+                                        break
                                 else:
                                     messagebox.showinfo(message = "invalido",title = ".")
+                                    break
 
                             else:
                                 messagebox.showinfo(message = "invalido",title = ".")
+                                break
 
             if dir == 4:
                pinto = True
@@ -206,6 +214,7 @@ class player(peon,tablero):
                                                 break
                                         else:
                                             messagebox.showinfo(message = "invalido",title = ".")
+                                            break
                                         
                                         
                                 
@@ -250,8 +259,10 @@ class player(peon,tablero):
                                                 break
                                             else:
                                                 messagebox.showinfo(message = "invalido",title = ".")
+                                                break
                                         else:
                                             messagebox.showinfo(message = "invalido",title = ".")
+                                            break
 
             if dir == 7:
                 m = True
@@ -324,6 +335,7 @@ class player(peon,tablero):
                                             break
                                     else:
                                         messagebox.showinfo(message = "invalido",title = ".")    
+                                        break
 
             
             if dir == 9:
@@ -356,8 +368,10 @@ class player(peon,tablero):
                                             break
                                         else:
                                             messagebox.showinfo(message = "invalido",title = ".")
+                                            break
                                     else:
                                         messagebox.showinfo(message = "invalido",title = ".")
+                                        break
             if dir == 10:
                 for lista in tablero1.mapa:
                     for x in lista:
@@ -382,9 +396,11 @@ class player(peon,tablero):
                                         break
                                 else:
                                     messagebox.showinfo(message = "invalid")
+                                    break
 
                             else:
                                 messagebox.showinfo(message = "invalid")
+                                break
 
                                 
             if dir == 11:
@@ -409,6 +425,7 @@ class player(peon,tablero):
                                     break
                             else:
                                 messagebox.showinfo(message = "invalid")
+                                break
 
             if dir == 12:
                 
@@ -435,11 +452,13 @@ class player(peon,tablero):
                                     break
                                 else:
                                     messagebox.showinfo(message = "invalid")
+                                    break
 
 
 
                             else:
                                  messagebox.showinfo(message = "invalid")
+                                 break
 
 
 
@@ -502,22 +521,27 @@ class player(peon,tablero):
                             print("atq")
                             
                             try:
+                                
+
                                 arriba = tablero1.mapa[num][i]
                                 if arriba == zombiex.nombre: 
                                     arriba = zombiex.items
                                     zombiex.vida = False
+                                    tablero1.mapa[num][i] = "Latigo"
                                     tablerogui(ventana,tablero1.mapa)
                                     atk = False
                                     break
                                 if arriba == zombiey.nombre: 
                                     arriba = zombiey.items
                                     zombiey.vida = False
+                                    tablero1.mapa[num][i] = "Espada"
                                     tablerogui(ventana,tablero1.mapa)
                                     atk = False
                                     break
                                 if arriba == zombiez.nombre: 
                                     arriba = zombiez.items
                                     zombiez.vida = False
+                                    tablero1.mapa[num][i] = "Pocion"
                                     tablerogui(ventana,tablero1.mapa)
                                     atk = False
                                     break
@@ -532,16 +556,19 @@ class player(peon,tablero):
                                     if abajo == zombiex.nombre: 
                                         abajo = zombiex.items
                                         zombiex.vida = False
+                                        tablero1.mapa[num][i] = "Latigo"
                                         tablerogui(ventana,tablero1.mapa)
                                         atk = False
                                     if abajo == zombiey.nombre: 
                                         abajo = zombiey.items
                                         zombiey.vida = False
+                                        tablero1.mapa[num][i] = "Espada"
                                         tablerogui(ventana,tablero1.mapa)
                                         atk = False
                                     if abajo == zombiez.nombre: 
                                         abajo = zombiez.items
                                         zombiex.vida = False
+                                        tablero1.mapa[num][i] = "Pocion"
                                         tablerogui(ventana,tablero1.mapa)
                                         atk = False
                                     break
@@ -634,9 +661,9 @@ class player(peon,tablero):
                                     tablerogui(ventana,tablero1.mapa)
                                     atk = False
                                 
-                                break
+                            
                             except IndexError:
-                                
+                                print("abajo")
                                 num2 = tablero1.mapa.index(lista) + 1
                                 
                                 abajo = tablero1.mapa[num2][i]
@@ -659,9 +686,10 @@ class player(peon,tablero):
                                     tablerogui(ventana,tablero1.mapa)
                                     atk = False
                                 break
-                                
-                    if player3.vida == False:
-                        main1.zzombie()
+                            except:
+                                break    
+                    #if player3.vida == False:
+                        #main1.zzombie()
 
 
         if atq == 3:
@@ -787,9 +815,9 @@ class zombie(tablero,peon):
                             main1.zzombieatq()
                             break
                         if lista[nuevo] == "obstaculo":
-                            print("Invalido")
+                            messagebox.showinfo(message = "invalido")
 
-                        if lista[nuevo] == 0:
+                        else:
                             viejo = lista.index(zombiex.nombre)
                             lista[viejo] = 0
                             lista[nuevo] = zombiex.nombre
@@ -801,8 +829,8 @@ class zombie(tablero,peon):
                             
                             continue
                             #break                            
-                        else: 
-                            messagebox.showinfo(message = "invalido")
+                        #else: 
+                            #messagebox.showinfo(message = "invalido")
                             #break
                         
                     else:
@@ -820,7 +848,7 @@ class zombie(tablero,peon):
                             break
                         if lista[nuevo] == "obstaculo":
                             messagebox.showinfo(message = "invalido")
-                        if lista[nuevo] == 0:
+                        if lista[nuevo] == lista[nuevo]:
                             viejo = lista.index(zombiey.nombre)
                             lista[viejo] = 0
                             lista[nuevo] = zombiey.nombre
@@ -852,7 +880,7 @@ class zombie(tablero,peon):
                             main1.zzombieatq()
                             break
                         else:
-                            if lista[nuevo] == 0:
+                            if lista[nuevo] == lista[nuevo]:
                                 viejo = lista.index(zombiez.nombre)
                                 lista[viejo] = 0
                                 lista[nuevo] = zombiez.nombre
@@ -1270,7 +1298,7 @@ player3 = player("Player3",True,"Veneno")
 tablero1 = tablero([["Base",player1.nombre,0,0,0,0,0,zombiex.nombre],
             ["Base",0,"obstaculo",0,0,0,0,"SpawnPoint"],
             ["Base",player2.nombre,0,0,0,0,0,zombiey.nombre],
-            ["Base",0,"obstaculo",0,0,0,0,"Spawnpoint"],
+            ["Base",0,"obstaculo",0,0,0,0,"SpawnPoint"],
             ["Base",player3.nombre,0,0,0,0,0,zombiez.nombre]])
 
 for x in tablero1.mapa:
@@ -1346,7 +1374,17 @@ class main2():
             player2.mover(dir)
         if dir == 12:
             player3.mover(dir)"""
-
+        sp = random.randint(5,7)
+        print("sp",sp)
+        if sp == 6:
+            for lista in tablero1.mapa:
+                for x in lista:
+                    print("x",x)
+                    if x == "SpawnPoint":
+                        x = "Zombie S"
+                        tablerogui(ventana,tablero1.mapa)
+                        break
+                break    
         for lista in tablero1.mapa:
                 if player1.vida == False:
                     if player2.vida == False:
@@ -1444,6 +1482,7 @@ class ventanaJuego():
         player2mover.place(x=760, y=40)
         player3mover= Button(ventana, text="PLAYER3 m",
                         command=lambda: ventana.after(200, main1.main(3)))
+        player3mover.place(x=760, y=60)
 
         player1atq = Button(ventana, text="PLAYER1 a",
                         command=lambda: ventana.after(200, player1.atacar(1)))
@@ -1487,4 +1526,3 @@ main1 = main2()
 #main1.main(1)
 #main1.zzombie()
 ventana.mainloop()
-        player3mover.place(x=760, y=60)
